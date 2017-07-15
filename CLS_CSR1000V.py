@@ -125,6 +125,15 @@ def main():
         print("{}".format(diff_routes))
 
 def destNetsOnly(csr1_json, csr2_json):
+
+# This function takes the full JSON object,
+# returned from the node, and parses it, storing
+# only the value in the destination-network key
+# of each route in the set. This is the only value 
+# used for RIB comparison (prefix/length only) and the 
+# routes that are not in BOTH RIBs, if any, are
+# returned to main.
+
     csr1_routes = set()
     for route in csr1_json['items']:
         csr1_routes.add(route['destination-network'])
